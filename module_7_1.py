@@ -22,12 +22,16 @@ class Shop:
         return products
 
     def add(self, *products):                       # Добавляет в файл __file_name каждый продукт из products
+        file = open(self.__file_name, 'a')
         for i in products:
-            if i.name not in self.get_products():
-                file = open(self.__file_name, 'a')  # Открытие/добавление
-                file.write(i.__str__() + '\n')      # Добавление значения с переносом строки
+            if str(i) not in self.get_products():
+                file.write(str(i) + '\n')      # Добавление значения с переносом строки
             else:
-                print(f'Продукт {i.name} уже есть в магазине')
+                print(f'Продукт {str(i)} уже есть в магазине')
+        file.close()
+
+
+
 
 s1 = Shop()
 p1 = Product('Potato', 50.5, 'Vegetables')
